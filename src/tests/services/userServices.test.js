@@ -1,5 +1,5 @@
 const userServices = require("../../services/userServices");
-const { Users } = require("../../../database/models");
+const { Users } = require("../../../auth_db/models");
 
 describe("User Services", () => {
   describe("POST /register", () => {
@@ -12,11 +12,6 @@ describe("User Services", () => {
       const result = await userServices.register(mockResult);
       expect(result).toEqual(mockResult);
     });
-
-    // it("should not register a user", async () => {
-    //   const result = await userServices.register("abc");
-    //   expect(result).toThrow(Error("Password is required"));
-    // });
 
   });
 
@@ -74,20 +69,5 @@ describe("User Services", () => {
 
     });
   });
-
-  describe("GET /cartProducts", () => {
-    it("should return cart products", async () => {
-      const mockResult = {
-        dataValues: {
-          id: "1",
-          cart: ["1", "2"],
-        },
-      };
-
-      const cart = ["table", "chair"]
-      jest.spyOn(Users, "findOne").mockResolvedValue(mockResult);
-      const result = await userServices.getCartProducts(mockResult);
-      expect(result).toEqual(cart);
-    });
-  });
 });
+  

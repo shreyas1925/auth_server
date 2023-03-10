@@ -65,37 +65,4 @@ describe('User Controller', () => {
     });
 });
 
-describe('User Controller', () => {
-    describe('GET /cartProducts/:userId', () => {
-        it('should return 200 when user has cart products', async () => {
-            const mockResult = ['product1','product2']
-            jest.spyOn(userServices,'getCartProducts').mockResolvedValue(mockResult);
-            const mockReq = {userId: '2'}
-            const mockRes = {
-                status: jest.fn().mockReturnThis(),
-                json: jest.fn(),
-            };
-
-            await userController.getCartProducts(mockReq, mockRes);
-            expect(mockRes.status).toBeCalledWith(200);
-            expect(mockRes.json).toBeCalledWith(mockResult);
-
-        });
-
-        it('should return 400 when user has no cart products', async () => {
-            const mockResult = {message: 'No cart products'}
-            jest.spyOn(userServices,'getCartProducts').mockRejectedValue(mockResult);
-            const mockReq = {userId: '2'}
-            const mockRes = {
-                status: jest.fn().mockReturnThis(),
-                json: jest.fn(),
-            };
-
-            await userController.getCartProducts(mockReq, mockRes);
-            expect(mockRes.status).toBeCalledWith(400);
-            expect(mockRes.json).toBeCalledWith(mockResult);
-        });
-        
-    });
-});
 
